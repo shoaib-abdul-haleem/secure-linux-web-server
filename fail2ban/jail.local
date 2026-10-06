@@ -1,0 +1,25 @@
+# /etc/fail2ban/jail.local
+
+[DEFAULT]
+bantime  = 1h
+findtime = 10m
+maxretry = 5
+
+# Never ban the VM itself or the Windows host (VirtualBox Host-Only adapter).
+# To test a ban, connect from another machine, for example the CentOS VM.
+# Remove a ban with: sudo fail2ban-client set sshd unbanip <ip>
+ignoreip = 127.0.0.1/8 ::1 192.168.56.1
+
+[sshd]
+enabled  = true
+maxretry = 3
+
+# Bans clients that keep hitting the nginx rate limit.
+# Ubuntu defaults to the systemd journal backend, which would ignore logpath.
+# nginx writes to files, so this jail needs backend = auto.
+[nginx-limit-req]
+enabled  = true
+backend  = auto
+port     = http,https
+logpath  = /var/log/nginx/*error.log
+maxretry = 10

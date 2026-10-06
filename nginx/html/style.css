@@ -1,0 +1,22 @@
+/* Served from the same origin, so the Content-Security-Policy default-src 'self' allows it. */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: #f4f6f9;
+  color: #1b2430;
+}
+
+main {
+  max-width: 40rem;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+  line-height: 1.6;
+}
+
+h1 {
+  color: #1f3a5f;
+}
+
+li {
+  margin-bottom: 0.25rem;
+}
